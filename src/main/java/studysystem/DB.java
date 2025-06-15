@@ -188,8 +188,7 @@ public class DB {
                         String userId = UserSession.getUsername();
 
                         // DB 삭제
-                        try (Connection conn = DriverManager.getConnection(
-                                "jdbc:mysql://localhost:3306/studysystem", "root", "rootroot");
+                        try (Connection conn = getConnection();
                              PreparedStatement stmt = conn.prepareStatement(
                                      "DELETE FROM reservations WHERE user_id = ? AND date = ? AND time = ? AND seat = ?")) {
 
@@ -203,6 +202,7 @@ public class DB {
                                fireEditingStopped();
                                 model.removeRow(selectedRow); // UI 갱신
                                 JOptionPane.showMessageDialog(null, "예약이 삭제되었습니다.");
+                                
                             } else {
                                 JOptionPane.showMessageDialog(null, "삭제 실패: 예약을 찾을 수 없습니다.");
                             }

@@ -48,11 +48,11 @@ public class SeatReservation extends JFrame {
       //메뉴바 추가
         setJMenuBar(MenuUtill.createMenuBar(this));
 
-        setSize(363, 330);
+        setSize(366, 401);
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.WHITE);
         // Back button column fixed 40px, content grows
-        getContentPane().setLayout(new MigLayout("insets 20", "[40!][grow]", "[]15[]15[]15[]30[]"));
+        getContentPane().setLayout(new MigLayout("insets 20", "[40!][grow]", "[]15[]15[]15[]30[][][]"));
 
         // Back button
         btnBack = new FlatButton();
@@ -70,13 +70,13 @@ public class SeatReservation extends JFrame {
         JLabel lblTitle = new JLabel("Seat Reservation");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitle.setForeground(new Color(45, 118, 232));
-        getContentPane().add(lblTitle, "cell 1 0, alignx center, wrap");
+        getContentPane().add(lblTitle, "cell 1 0,alignx center");
 
         // Seat number label & value
         getContentPane().add(new JLabel("Seat:"), "cell 0 1, right");
         JLabel lblSeat = new JLabel(chairNum);
         lblSeat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-        getContentPane().add(lblSeat, "cell 1 1, wrap");
+        getContentPane().add(lblSeat, "cell 1 1");
 
         // Date combo
         getContentPane().add(new JLabel("Date:"), "cell 0 2, right");
@@ -87,7 +87,7 @@ public class SeatReservation extends JFrame {
             dateCombo.addItem(d.getMonthValue() + "월 " + d.getDayOfMonth() + "일");
         }
         dateCombo.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-        getContentPane().add(dateCombo, "cell 1 2, growx, wrap");
+        getContentPane().add(dateCombo, "cell 1 2,growx");
 
         // Time combo
         getContentPane().add(new JLabel("Time:"), "cell 0 3, right");
@@ -96,34 +96,39 @@ public class SeatReservation extends JFrame {
             timeCombo.addItem(String.format("%02d:00", h));
         }
         timeCombo.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-        getContentPane().add(timeCombo, "cell 1 3, growx, wrap");
-
-        // Reserve button
-        btnReserve = new FlatButton();
-        btnReserve.setText("Reserve");
-        btnReserve.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        btnReserve.setBackground(new Color(45, 118, 232));
-        btnReserve.setForeground(Color.WHITE);
-        btnReserve.addActionListener((ActionEvent e) -> reserveSeat(chairNum));
-        getContentPane().add(btnReserve, "span 2, alignx center, w 120!, h 40!");
-        addHoverAnimation(btnReserve);
+        getContentPane().add(timeCombo, "cell 1 3,growx");
+                
+                        // Reserve button
+                        btnReserve = new FlatButton();
+                        btnReserve.setText("Reserve");
+                        btnReserve.setFont(new Font("Segoe UI", Font.BOLD, 18));
+                        btnReserve.setBackground(new Color(45, 118, 232));
+                        btnReserve.setForeground(Color.WHITE);
+                        btnReserve.addActionListener((ActionEvent e) -> reserveSeat(chairNum));
+                        getContentPane().add(btnReserve, "cell 1 6,width 120!,alignx center,height 40!");
+                        addHoverAnimation(btnReserve);
     }
 
     private void reserveSeat(String chairNum) {
         String selectedDate = (String) dateCombo.getSelectedItem();
         String selectedTime = (String) timeCombo.getSelectedItem();
         String userId = UserSession.getUsername();
-        String sql = "INSERT INTO reservations (user_id, seat, date, time) VALUES (?, ?, ?, ?)";
+
+        String sql = "INSERT INTO reservations (user_id, seat, date, `time`) VALUES (?, ?, ?, ?)";
+
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, userId);
             stmt.setString(2, "Seat " + String.format("%02d", Integer.parseInt(chairNum)));
             stmt.setString(3, selectedDate);
             stmt.setString(4, selectedTime);
+
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "예약이 완료되었습니다!");
             new History().setVisible(true);
             dispose();
+
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this,

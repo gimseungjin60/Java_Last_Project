@@ -1,18 +1,26 @@
 package studysystem;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 public class SeatStatus extends JFrame{
 
+	
+	private Map<String, JButton> seatButtons = new HashMap<>();
 
    /**
     * Launch the application.
@@ -48,13 +56,13 @@ public class SeatStatus extends JFrame{
     //메뉴바 추가
       setJMenuBar(MenuUtill.createMenuBar(this));
       
-      HashMap<String, JButton> seatButtons = new HashMap<>();
+      // 클래스 필드 상단에 추가
 
       JButton btnSeat1 = new JButton("1");
       seatButtons.put("1", btnSeat1);
       btnSeat1.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat1.getText());
+        	 OpenClose(btnSeat1.getText());
          }
       });
       
@@ -62,7 +70,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("2", btnSeat2);
       btnSeat2.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat2.getText());
+        	 OpenClose(btnSeat2.getText());
          }
       });
       
@@ -70,7 +78,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("3", btnSeat3);
       btnSeat3.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat3.getText());
+        	 OpenClose(btnSeat3.getText());
          }
       });
       
@@ -78,7 +86,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("4", btnSeat4);
       btnSeat4.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat4.getText());
+        	 OpenClose(btnSeat4.getText());
          }
       });
       
@@ -86,7 +94,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("5", btnSeat5);
       btnSeat5.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat5.getText());
+        	 OpenClose(btnSeat5.getText());
          }
       });
       
@@ -94,7 +102,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("6", btnSeat6);
       btnSeat6.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat6.getText());
+        	 OpenClose(btnSeat6.getText());
          }
       });
       
@@ -102,7 +110,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("7", btnSeat7);
       btnSeat7.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat7.getText());
+        	 OpenClose(btnSeat7.getText());
          }
       });
       
@@ -110,7 +118,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("8", btnSeat8);
       btnSeat8.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat8.getText());
+        	 OpenClose(btnSeat8.getText());
          }
       });
       
@@ -118,7 +126,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("9", btnSeat9);
       btnSeat9.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat9.getText());
+        	 OpenClose(btnSeat9.getText());
          }
       });
       
@@ -126,7 +134,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("10", btnSeat10);
       btnSeat10.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat10.getText());
+        	 OpenClose(btnSeat10.getText());
          }
       });
       
@@ -134,7 +142,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("11", btnSeat11);
       btnSeat11.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat11.getText());
+        	 OpenClose(btnSeat11.getText());
          }
       });
       
@@ -142,7 +150,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("12", btnSeat12);
       btnSeat12.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat12.getText());
+        	 OpenClose(btnSeat12.getText());
          }
       });
       
@@ -150,7 +158,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("13", btnSeat13);
       btnSeat13.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat13.getText());
+        	 OpenClose(btnSeat13.getText());
          }
       });
       
@@ -158,7 +166,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("14", btnSeat14);
       btnSeat14.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat14.getText());
+        	 OpenClose(btnSeat14.getText());
          }
       });
       
@@ -166,7 +174,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("15", btnSeat15);
       btnSeat15.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat15.getText());
+        	 OpenClose(btnSeat15.getText());
          }
       });
       
@@ -174,7 +182,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("17", btnSeat17);
       btnSeat17.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat17.getText());
+        	 OpenClose(btnSeat17.getText());
          }
       });
       
@@ -182,7 +190,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("16", btnSeat16);
       btnSeat16.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat16.getText());
+        	 OpenClose(btnSeat16.getText());
          }
       });
       
@@ -190,7 +198,7 @@ public class SeatStatus extends JFrame{
       seatButtons.put("18", btnSeat18);
       btnSeat18.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat18.getText());
+        	 OpenClose(btnSeat18.getText());
          }
       });
       
@@ -198,114 +206,149 @@ public class SeatStatus extends JFrame{
       seatButtons.put("20", btnSeat20);
       btnSeat20.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat20.getText());
+        	 OpenClose(btnSeat20.getText());
          }
       });
       
       JButton btnSeat21 = new JButton("21");
+      seatButtons.put("21", btnSeat21);
       btnSeat21.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat21.getText());
+        	 OpenClose(btnSeat21.getText());
          }
       });
       
       JButton btnSeat19 = new JButton("19");
+      seatButtons.put("19", btnSeat19);
       btnSeat19.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat19.getText());
+        	 OpenClose(btnSeat19.getText());
          }
       });
       
       JButton btnSeat22 = new JButton("22");
+      seatButtons.put("22", btnSeat22);
       btnSeat22.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat22.getText());
+        	 OpenClose(btnSeat22.getText());
          }
       });
       
       JButton btnSeat24 = new JButton("24");
+      seatButtons.put("24", btnSeat24);
       btnSeat24.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat24.getText());
+        	 OpenClose(btnSeat24.getText());
          }
       });
       
       JButton btnSeat25 = new JButton("25");
+      seatButtons.put("25", btnSeat25);
       btnSeat25.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat25.getText());
+        	 OpenClose(btnSeat25.getText());
          }
       });
       
       JButton btnSeat23 = new JButton("23");
+      seatButtons.put("23", btnSeat23);
       btnSeat23.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat23.getText());
+        	 OpenClose(btnSeat23.getText());
          }
       });
       
       JButton btnSeat26 = new JButton("26");
+      seatButtons.put("26", btnSeat26);
       btnSeat26.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat26.getText());
+        	 OpenClose(btnSeat26.getText());
          }
       });
       
       JButton btnSeat27 = new JButton("27");
+      seatButtons.put("27", btnSeat27);
       btnSeat27.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat27.getText());
+        	 OpenClose(btnSeat27.getText());
          }
       });
       
       JButton btnSeat28 = new JButton("28");
+      seatButtons.put("28", btnSeat28);
       btnSeat28.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat28.getText());
+        	 OpenClose(btnSeat28.getText());
          }
       });
       
       JButton btnSeat29 = new JButton("29");
+      seatButtons.put("29", btnSeat29);
       btnSeat29.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat29.getText());
+        	 OpenClose(btnSeat29.getText());
          }
       });
       
       JButton btnSeat30 = new JButton("30");
+      seatButtons.put("30", btnSeat30);
       btnSeat30.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat30.getText());
+        	 OpenClose(btnSeat30.getText());
          }
       });
       
       JButton btnSeat31 = new JButton("31");
+      seatButtons.put("31", btnSeat31);
       btnSeat31.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat31.getText());
+        	 OpenClose(btnSeat31.getText());
          }
       });
       
       JButton btnSeat32 = new JButton("32");
+      seatButtons.put("32", btnSeat32);
       btnSeat32.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat32.getText());
+        	 OpenClose(btnSeat32.getText());
          }
       });
       
       JButton btnSeat33 = new JButton("33");
+      seatButtons.put("33", btnSeat33);
       btnSeat33.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            OpenClose(btnSeat33.getText());
+        	 OpenClose(btnSeat33.getText());
          }
       });
       
       JButton btnSeat34 = new JButton("34");
+      seatButtons.put("34", btnSeat34);
       btnSeat34.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat34.getText());
          }
       });
+      
+      updateReservedSeats();
+      
+      //예약된 좌석 처리
+      try (Connection conn = DB.getConnection()) {
+    	    String sql = "SELECT seat FROM reservations";
+    	    PreparedStatement stmt = conn.prepareStatement(sql);
+    	    ResultSet rs = stmt.executeQuery();
+    	    while (rs.next()) {
+    	        String seat = rs.getString("seat").replace("Seat ", "").trim();
+    	        JButton btn = seatButtons.get(seat);
+    	        if (btn != null) {
+    	            btn.setBackground(Color.RED);
+    	            btn.setEnabled(true);  // 색은 바꾸되 누를 수 있도록 유지
+    	        }
+    	    }
+    	} catch (Exception ex) {
+    	    ex.printStackTrace();
+    	}
+      
       GroupLayout groupLayout = new GroupLayout(getContentPane());
       groupLayout.setHorizontalGroup(
       	groupLayout.createParallelGroup(Alignment.LEADING)
@@ -468,11 +511,47 @@ public class SeatStatus extends JFrame{
       getContentPane().setLayout(groupLayout);
    }
    
+   private void updateReservedSeats() {
+	    // 1. 모든 좌석 초기화
+	    seatButtons.values().forEach(btn -> {
+	        btn.setBackground(null);  // 기본 색 (null 또는 원하는 색)
+	        btn.setEnabled(true);
+	    });
+
+	    // 2. 예약된 좌석만 색상 변경
+	    try (Connection conn = DB.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement("SELECT seat FROM reservations")) {
+
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            String seatRaw = rs.getString("seat"); // 예: "Seat 01"
+	            String seatNum = seatRaw.replace("Seat ", "").trim(); // "01"
+	            int seatIndex = Integer.parseInt(seatNum);            // 1~34
+	            String key = String.valueOf(seatIndex);               // "1" ~ "34"
+
+	            JButton btn = seatButtons.get(key);
+	            if (btn != null) {
+	                btn.setBackground(Color.RED);
+	            } else {
+	                System.err.println("등록되지 않은 좌석 번호: " + seatRaw);
+	            }
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+   
    // 닫고 열기 함수
    private void OpenClose(String chairNum) {
-      System.out.println(chairNum);
-      dispose();
-      SeatReservation stst = new SeatReservation(chairNum);
-      stst.setVisible(true);
-   }
+	   JButton btn = seatButtons.get(chairNum);
+	    if (btn != null && Color.RED.equals(btn.getBackground())) {
+	        JOptionPane.showMessageDialog(this, "예약된 좌석입니다.");
+	        return;
+	    }
+
+	    dispose();
+	    SeatReservation stst = new SeatReservation(chairNum);
+	    stst.setVisible(true);
+	}
 }

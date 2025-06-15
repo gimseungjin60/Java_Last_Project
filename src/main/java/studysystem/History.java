@@ -35,12 +35,11 @@ public class History extends JFrame {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         mainPanel.add(titleLabel);
         String reSeat;
-        String[] columnNames = { "Date", "Time", "Seat", "delete" };
+        String[] columnNames = { "data", "time", "seat", "delete" };
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
         try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/studysystem", "root", "rootroot");
+            Connection conn = DB.getConnection();
 
             String sql = "SELECT date, time, seat FROM reservations WHERE user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -56,6 +55,7 @@ public class History extends JFrame {
                 model.addRow(new Object[]{date, time, seat, "delete"});
             }
             conn.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,8 +65,9 @@ public class History extends JFrame {
         table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
         getContentPane().setLayout(null);
         table.getColumn("delete").setCellEditor(new HistoryButtonEditor(new JCheckBox(), table, model));
-
+        
         JScrollPane scrollPane = new JScrollPane(table);
+        
         scrollPane.setBounds(0, 30, 484, 428);
         mainPanel.add(scrollPane);
 
@@ -77,6 +78,7 @@ public class History extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
         	   new SeatStatus().setVisible(true);
+        	   dispose();
         	   }
         });
         btnNewButton.setBounds(407, 0, 77, 32);
