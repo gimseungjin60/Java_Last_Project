@@ -27,7 +27,7 @@ public class DB {
 		}
 	}
 
-	// === 로그인 체크 ===
+	// === 로그인 체크 === test
 	public static boolean loginCheck(String userId, String password) {
 		String sql = "SELECT * FROM member WHERE user_id = ? AND password = ?";
 		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
