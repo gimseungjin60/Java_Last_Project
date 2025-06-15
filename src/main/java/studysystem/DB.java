@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DB {
-	// === DB 설정 ===
+	// === DB 설정 ===teseasd
 	private static final String URL = "jdbc:mysql://localhost:3306/studysystem";
 	private static final String USER = "root";
 	private static final String PASSWORD = "rootroot";
