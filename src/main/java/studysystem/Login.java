@@ -63,7 +63,7 @@ public class Login extends JFrame {
         
         // 아이디 입력 (placeholder manually)
         txtId = new FlatTextField();
-        txtId.setBounds(20, 209, 550, 40);
+        txtId.setBounds(20, 209, 502, 40);
         txtId.setText("아이디");
         txtId.setForeground(Color.GRAY);
         txtId.setFont(new Font("굴림", Font.PLAIN, 12));
@@ -85,15 +85,15 @@ public class Login extends JFrame {
         });
         getContentPane().setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("image");
+        JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setBounds(0, 0, 534, 131);
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\gimse\\OneDrive\\바탕 화면\\real_project\\Java_Project1\\src\\images\\Groovy Baby.png"));
+        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\xzver\\OneDrive\\바탕 화면\\Groovy_Baby.png"));
         getContentPane().add(lblNewLabel);
         getContentPane().add(txtId);
 
         // 비밀번호 입력 (placeholder manually)
         txtPassword = new FlatPasswordField();
-        txtPassword.setBounds(20, 269, 550, 40);
+        txtPassword.setBounds(20, 269, 502, 40);
         txtPassword.setEchoChar((char)0);
         txtPassword.setText("비밀번호");
         txtPassword.setForeground(Color.GRAY);
@@ -122,7 +122,7 @@ public class Login extends JFrame {
 
         // 로그인 버튼
         FlatButton btnLogin = new FlatButton();
-        btnLogin.setBounds(20, 329, 550, 40);
+        btnLogin.setBounds(20, 329, 502, 40);
         btnLogin.setText("로그인");
         btnLogin.setFont(new Font("굴림", Font.BOLD, 18));
         btnLogin.addActionListener((ActionEvent e) -> {
@@ -135,7 +135,7 @@ public class Login extends JFrame {
 
         // 회원가입 버튼
         FlatButton btnSignUp = new FlatButton();
-        btnSignUp.setBounds(20, 376, 550, 40);
+        btnSignUp.setBounds(20, 376, 502, 40);
         btnSignUp.setText("회원가입");
         btnSignUp.setFont(new Font("굴림", Font.BOLD, 18));
         btnSignUp.addActionListener((ActionEvent e) -> {

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -41,12 +42,16 @@ public class SeatStatus extends JFrame{
     */
    private void initialize() {
       setBounds(100, 100, 469, 297);
+      setSize(550, 850);
       setLocationRelativeTo(null);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     //메뉴바 추가
       setJMenuBar(MenuUtill.createMenuBar(this));
+      
+      HashMap<String, JButton> seatButtons = new HashMap<>();
 
       JButton btnSeat1 = new JButton("1");
+      seatButtons.put("1", btnSeat1);
       btnSeat1.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat1.getText());
@@ -54,6 +59,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat2 = new JButton("2");
+      seatButtons.put("2", btnSeat2);
       btnSeat2.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat2.getText());
@@ -61,6 +67,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat3 = new JButton("3");
+      seatButtons.put("3", btnSeat3);
       btnSeat3.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat3.getText());
@@ -68,6 +75,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat4 = new JButton("4");
+      seatButtons.put("4", btnSeat4);
       btnSeat4.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat4.getText());
@@ -75,6 +83,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat5 = new JButton("5");
+      seatButtons.put("5", btnSeat5);
       btnSeat5.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat5.getText());
@@ -82,6 +91,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat6 = new JButton("6");
+      seatButtons.put("6", btnSeat6);
       btnSeat6.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat6.getText());
@@ -89,6 +99,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat7 = new JButton("7");
+      seatButtons.put("7", btnSeat7);
       btnSeat7.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat7.getText());
@@ -96,6 +107,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat8 = new JButton("8");
+      seatButtons.put("8", btnSeat8);
       btnSeat8.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat8.getText());
@@ -103,6 +115,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat9 = new JButton("9");
+      seatButtons.put("9", btnSeat9);
       btnSeat9.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat9.getText());
@@ -110,6 +123,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat10 = new JButton("10");
+      seatButtons.put("10", btnSeat10);
       btnSeat10.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat10.getText());
@@ -117,6 +131,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat11 = new JButton("11");
+      seatButtons.put("11", btnSeat11);
       btnSeat11.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat11.getText());
@@ -124,6 +139,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat12 = new JButton("12");
+      seatButtons.put("12", btnSeat12);
       btnSeat12.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat12.getText());
@@ -131,6 +147,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat13 = new JButton("13");
+      seatButtons.put("13", btnSeat13);
       btnSeat13.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat13.getText());
@@ -138,6 +155,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat14 = new JButton("14");
+      seatButtons.put("14", btnSeat14);
       btnSeat14.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat14.getText());
@@ -145,6 +163,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat15 = new JButton("15");
+      seatButtons.put("15", btnSeat15);
       btnSeat15.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat15.getText());
@@ -152,6 +171,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat17 = new JButton("17");
+      seatButtons.put("17", btnSeat17);
       btnSeat17.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat17.getText());
@@ -159,6 +179,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat16 = new JButton("16");
+      seatButtons.put("16", btnSeat16);
       btnSeat16.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat16.getText());
@@ -166,6 +187,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat18 = new JButton("18");
+      seatButtons.put("18", btnSeat18);
       btnSeat18.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat18.getText());
@@ -173,6 +195,7 @@ public class SeatStatus extends JFrame{
       });
       
       JButton btnSeat20 = new JButton("20");
+      seatButtons.put("20", btnSeat20);
       btnSeat20.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             OpenClose(btnSeat20.getText());
