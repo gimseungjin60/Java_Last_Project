@@ -169,7 +169,7 @@ public class Login extends JFrame {
         panel.add(NowTime);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(0, 0, 550, 850);
+        lblNewLabel.setBounds(0, 0, 534, 811);
         lblNewLabel.setIcon(icon);
         getContentPane().add(lblNewLabel);
     }
