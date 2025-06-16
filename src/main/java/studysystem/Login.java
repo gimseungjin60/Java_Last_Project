@@ -8,6 +8,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -146,9 +150,10 @@ public class Login extends JFrame {
         panel.setLayout(new GridLayout(1, 4));
         getContentPane().add(panel);
         
-        JLabel lblNewLabel_2 = new JLabel("New label");
-        lblNewLabel_2.setOpaque(false);
-        panel.add(lblNewLabel_2);
+        JLabel rts = new JLabel();
+        rts.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
+        panel.add(rts);
+        ReaTimeSeat(rts);
 
         JLabel lblNewLabel_1 = new JLabel("1인 잔여좌석 ");
         lblNewLabel_1.setOpaque(false);
@@ -213,5 +218,28 @@ public class Login extends JFrame {
                 t.play();
             }
         });
+    }
+    
+    private void ReaTimeSeat(JLabel seatStatusLabel) {
+        int totalSeats = 34;
+        int reservedCount = 0;
+
+        String sql = "SELECT COUNT(*) FROM reservations";
+
+        try (Connection conn = DB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                reservedCount = rs.getInt(1);
+            }
+
+            int availableSeats = totalSeats - reservedCount;
+            seatStatusLabel.setText("잔여좌석: " + availableSeats + "석");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            seatStatusLabel.setText("잔여좌석 확인 실패");
+        }
     }
 }
