@@ -1,4 +1,4 @@
-package studysystem;
+ package studysystem;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -20,14 +20,19 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.components.FlatTextField;
 import com.formdev.flatlaf.extras.components.FlatPasswordField;
 import com.formdev.flatlaf.extras.components.FlatButton;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 //현재 시간 나타내는 import 추가
 import javax.swing.Timer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 public class Login extends JFrame {
-    private FlatTextField txtId;
-    private FlatPasswordField txtPassword;
+	//둥근 텍스트 필드 만들기
+    private RoundedTextField  txtId;
+    private RoundedPasswordField txtPassword;
     //현재 시간 나타내는 전역 변수
     private JLabel NowTime;
     public static void main(String[] args) {
@@ -53,20 +58,13 @@ public class Login extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 850);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.WHITE);
-        
-        //현재 시간 나타내는 기능
-        NowTime = new JLabel("00:00:00");  // 지역 변수 없이 바로 할당
-        NowTime.setFont(new Font("맑은 고딕", Font.BOLD, 16));
-        NowTime.setBounds(336, 134, 186, 75);
-        getContentPane().add(NowTime);
+        getContentPane().setBackground(null);
         
         // 아이디 입력 (placeholder manually)
-        txtId = new FlatTextField();
-        txtId.setBounds(20, 209, 502, 40);
+        txtId = new RoundedTextField(20);
+        txtId.setBounds(20, 385, 502, 40);
         txtId.setText("아이디");
         txtId.setForeground(Color.GRAY);
-        txtId.setFont(new Font("굴림", Font.PLAIN, 12));
         txtId.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -75,6 +73,7 @@ public class Login extends JFrame {
                     txtId.setForeground(Color.BLACK);
                 }
             }
+
             @Override
             public void focusLost(FocusEvent e) {
                 if (txtId.getText().isEmpty()) {
@@ -83,21 +82,18 @@ public class Login extends JFrame {
                 }
             }
         });
+        //사진 절대 경로로 지정 x / 상대 경로로 지정 후 클래스안에 있는 이미지 불러와야됨
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/Debugging Room.gif"));
         getContentPane().setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(0, 0, 534, 131);
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\xzver\\OneDrive\\바탕 화면\\Groovy_Baby.png"));
-        getContentPane().add(lblNewLabel);
         getContentPane().add(txtId);
 
-        // 비밀번호 입력 (placeholder manually)
-        txtPassword = new FlatPasswordField();
-        txtPassword.setBounds(20, 269, 502, 40);
+        txtPassword = new RoundedPasswordField(20);  // 둥근 입력창 생성
+        txtPassword.setBounds(20, 435, 502, 40);
         txtPassword.setEchoChar((char)0);
         txtPassword.setText("비밀번호");
         txtPassword.setForeground(Color.GRAY);
-        txtPassword.setFont(new Font("굴림", Font.PLAIN, 12));
+        txtPassword.setFont(new Font("맑은 고딕", Font.PLAIN, 14)); // 폰트 통일
         txtPassword.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -122,7 +118,7 @@ public class Login extends JFrame {
 
         // 로그인 버튼
         FlatButton btnLogin = new FlatButton();
-        btnLogin.setBounds(20, 329, 502, 40);
+        btnLogin.setBounds(12, 590, 502, 40);
         btnLogin.setText("로그인");
         btnLogin.setFont(new Font("굴림", Font.BOLD, 18));
         btnLogin.addActionListener((ActionEvent e) -> {
@@ -135,7 +131,7 @@ public class Login extends JFrame {
 
         // 회원가입 버튼
         FlatButton btnSignUp = new FlatButton();
-        btnSignUp.setBounds(20, 376, 502, 40);
+        btnSignUp.setBounds(12, 643, 502, 40);
         btnSignUp.setText("회원가입");
         btnSignUp.setFont(new Font("굴림", Font.BOLD, 18));
         btnSignUp.addActionListener((ActionEvent e) -> {
@@ -145,8 +141,32 @@ public class Login extends JFrame {
         getContentPane().add(btnSignUp);
         addHoverAnimation(btnSignUp);
         
-        NowTime.setBounds(336, 134, 186, 75);
-        getContentPane().add(NowTime);
+        RoundedPanel panel = new RoundedPanel(20);  // radius = 20
+        panel.setBounds(12, 256, 512, 75);
+        panel.setLayout(new GridLayout(1, 4));
+        getContentPane().add(panel);
+        
+        JLabel lblNewLabel_2 = new JLabel("New label");
+        lblNewLabel_2.setOpaque(false);
+        panel.add(lblNewLabel_2);
+
+        JLabel lblNewLabel_1 = new JLabel("1인 잔여좌석 ");
+        lblNewLabel_1.setOpaque(false);
+        panel.add(lblNewLabel_1);
+
+        JLabel lblNewLabel_3 = new JLabel("New label");
+        lblNewLabel_3.setOpaque(false);
+        panel.add(lblNewLabel_3);
+
+        NowTime = new JLabel("00:00:00");
+        NowTime.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        NowTime.setOpaque(false);
+        panel.add(NowTime);
+
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setBounds(0, 0, 550, 850);
+        lblNewLabel.setIcon(icon);
+        getContentPane().add(lblNewLabel);
     }
     private void startClock() {
         Timer timer = new Timer(1000, e -> {
