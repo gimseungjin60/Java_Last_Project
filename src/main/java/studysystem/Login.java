@@ -1,40 +1,20 @@
- package studysystem;
+package studysystem;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-
-import net.miginfocom.swing.MigLayout;
-import org.pushingpixels.trident.Timeline;
-
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.extras.components.FlatTextField;
-import com.formdev.flatlaf.extras.components.FlatPasswordField;
-import com.formdev.flatlaf.extras.components.FlatButton;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-//현재 시간 나타내는 import 추가
-import javax.swing.Timer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
+import javax.swing.*;
+
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.extras.components.*;
+import org.pushingpixels.trident.Timeline;
+
 public class Login extends JFrame {
-	//둥근 텍스트 필드 만들기
+   //둥근 텍스트 필드 만들기
     private RoundedTextField  txtId;
     private RoundedPasswordField txtPassword;
     //현재 시간 나타내는 전역 변수
@@ -91,7 +71,8 @@ public class Login extends JFrame {
         getContentPane().setLayout(null);
         
         getContentPane().add(txtId);
-
+        
+        
         txtPassword = new RoundedPasswordField(20);  // 둥근 입력창 생성
         txtPassword.setBounds(20, 435, 502, 40);
         txtPassword.setEchoChar((char)0);
@@ -145,27 +126,32 @@ public class Login extends JFrame {
         getContentPane().add(btnSignUp);
         addHoverAnimation(btnSignUp);
         
-        RoundedPanel panel = new RoundedPanel(20);  // radius = 20
-        panel.setBounds(12, 256, 512, 75);
-        panel.setLayout(new GridLayout(1, 4));
+        // 1. 패널 생성 및 레이아웃 변경
+        RoundedPanel panel = new RoundedPanel(30);  // radius 더 키워 부드럽게!
+        panel.setBounds(12, 256, 512, 58);
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 13)); // 가운데 정렬, 좌우 간격 25, 상하 패딩 13
         getContentPane().add(panel);
-        
-        JLabel rts = new JLabel();
-        rts.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
-        panel.add(rts);
-        ReaTimeSeat(rts);
 
-        JLabel lblNewLabel_1 = new JLabel("1인 잔여좌석 ");
-        lblNewLabel_1.setOpaque(false);
-        panel.add(lblNewLabel_1);
+        // 2. 잔여좌석 라벨
+        JLabel rts = new JLabel("잔여좌석: 확인 중...");
+        rts.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+        rts.setForeground(new Color(40, 80, 160)); // 블루 계열 포인트컬러
+        ReaTimeSeat(rts);  // 생성자에서 라벨 전달하여 잔여좌석 출력
 
-        JLabel lblNewLabel_3 = new JLabel("New label");
-        lblNewLabel_3.setOpaque(false);
-        panel.add(lblNewLabel_3);
+        // 3. 구분선 라벨
+        JLabel divider = new JLabel(" | ");
+        divider.setFont(new Font("맑은 고딕", Font.PLAIN, 19));
+        divider.setForeground(new Color(160, 160, 160));
 
+        // 4. 시간 라벨
         NowTime = new JLabel("00:00:00");
-        NowTime.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        NowTime.setFont(new Font("맑은 고딕", Font.BOLD, 19));
+        NowTime.setForeground(new Color(24, 24, 36));
         NowTime.setOpaque(false);
+
+        // 5. 패널에 추가
+        panel.add(rts);
+        panel.add(divider);
         panel.add(NowTime);
 
         JLabel lblNewLabel = new JLabel("");
@@ -223,7 +209,6 @@ public class Login extends JFrame {
     private void ReaTimeSeat(JLabel seatStatusLabel) {
         int totalSeats = 34;
         int reservedCount = 0;
-
         String sql = "SELECT COUNT(*) FROM reservations";
 
         try (Connection conn = DB.getConnection();
