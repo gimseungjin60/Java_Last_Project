@@ -12,11 +12,12 @@ import java.util.List;
 
 public class DB {
 	// === DB 설정 ===
+	//MySQL 서버(studysystem DB)에 접속할 때 쓰는 정보.
 	private static final String URL = "jdbc:mysql://localhost:3306/studysystem";
 	private static final String USER = "root";
 	private static final String PASSWORD = "rootroot";
 
-	// === DB 연결 ===
+	// === DB 연결 === 위 설정으로 DB에 연결해서 Connection 객체를 반환.
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,7 +28,7 @@ public class DB {
 		}
 	}
 
-	// === 로그인 체크 ===
+	// === 로그인 체크 === member 테이블에서 입력한 id/pw가 일치하는지 확인.
 	public static boolean loginCheck(String userId, String password) {
 		String sql = "SELECT * FROM member WHERE user_id = ? AND password = ?";
 		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -43,6 +44,7 @@ public class DB {
 	}
 
 	// === 전체 회원 조회 ===
+	//전체 회원 목록 불러오기
 	public static List<Member> getAllMembers() {
 		List<Member> list = new ArrayList<>();
 		String sql = "SELECT user_id, email FROM member";
@@ -63,6 +65,7 @@ public class DB {
 	}
 
 	// === 회원 삭제 ===
+	//user_id 기준으로 해당 회원을 삭제.
 	public static boolean deleteMemberById(String userId) {
 		String sql = "DELETE FROM member WHERE user_id = ?";
 		try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -76,6 +79,7 @@ public class DB {
 	}
 
 	// === 예약 삭제 ===
+	//reservations 테이블에서 userId, 날짜, 시간, 좌석이 모두 일치하는 예약 삭제.
 	public static boolean deleteReservation(String userId, String date, String time, String seat) {
 		String sql = "DELETE FROM reservations WHERE user_id = ? AND date = ? AND time = ? AND seat = ?";
 
@@ -95,7 +99,7 @@ public class DB {
 		}
 	}
 
-	// === Member 클래스 ===
+	// === Member 클래스 === 회원 정보를 담는 데이터 클래스.
 	public static class Member {
 		public String id, email;
 
@@ -106,6 +110,7 @@ public class DB {
 	}
 
 	// === JTable 삭제 버튼 렌더러 ===
+	//테이블에 버튼 모양으로 표시, 셀에 "삭제" 버튼이 보이게 하는 역할 (실제 동작은 안 함).
 	public static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setText("삭제");
@@ -119,6 +124,9 @@ public class DB {
 	}
 
 	// === JTable 삭제 버튼 에디터 ===
+	//"삭제" 버튼 누르면:
+	//다이얼로그로 '정말 삭제할까요?' 물어봄.
+	//YES 누르면 DB에서 삭제, 테이블 갱신.
 	public static class ButtonEditor extends DefaultCellEditor {
 		private final JButton button;
 		private String userId;
@@ -160,6 +168,9 @@ public class DB {
 	}
 
 	// === 버튼 에디터 (예약 삭제 기능 연동) ===
+	//예약 내역 JTable에 적용.
+	//해당 행의 날짜/시간/좌석 정보와 로그인한 userId로 예약 삭제.
+	//삭제 성공시 행이 즉시 테이블에서 제거됨(UI 반영).
     public static class HistoryButtonEditor extends DefaultCellEditor {
         private final JButton button;
         private boolean isPushed = false;
