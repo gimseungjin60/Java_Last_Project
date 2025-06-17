@@ -219,3 +219,4 @@ public class SeatReservation extends JFrame {
         }
     }
 }
+// 강제 커밋용 테스트 변경
